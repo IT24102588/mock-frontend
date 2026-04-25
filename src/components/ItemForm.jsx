@@ -4,13 +4,15 @@ import { createItem } from '../api';
 export default function ItemForm({ onItemAdded }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
   // TODO: Add price state here
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createItem({ name, description }); // TODO: add price to this object
+    await createItem({ name, description,price }); // TODO: add price to this object
     setName('');
     setDescription('');
+    setPrice('');
     onItemAdded();
   };
 
@@ -34,6 +36,12 @@ export default function ItemForm({ onItemAdded }) {
         />
       </div>
       {/* TODO: Add price input here */}
+      <input
+          placeholder="RS 1000"
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+          required
+        />
       <button type="submit">Add Item</button>
     </form>
   );
